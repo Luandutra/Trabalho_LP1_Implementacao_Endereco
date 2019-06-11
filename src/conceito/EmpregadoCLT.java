@@ -1,4 +1,7 @@
 package conceito;
+
+import localizacao.EmpregadoException;
+
 /**
  *
  * @author Eberty
@@ -9,13 +12,13 @@ public class EmpregadoCLT extends Empregado {
     private float pINSS;
     private float pIR;
     private int numeroFilhos;
-    private float valorSalarioFamilia;
+    private float  valorSalarioFamilia;
     
     public EmpregadoCLT () {
         super();
     }
     
-    public EmpregadoCLT(float salarioBase, float percINSS, float percIR, int numeroFilhos, float valorSalarioFamilia, String cargo, String nomeEmpresa, String nome, String nomeMae, String nomePai) throws PessoaException {
+    public EmpregadoCLT(float salarioBase, float percINSS, float percIR, int numeroFilhos, float valorSalarioFamilia, String cargo, String nomeEmpresa, String nome, String nomeMae, String nomePai) throws PessoaException, EmpregadoException {
         super(cargo, nomeEmpresa, nome, nomeMae, nomePai);
         this.setNumeroFilhos(numeroFilhos);
         this.setValorSalarioFamilia(valorSalarioFamilia);
@@ -25,7 +28,7 @@ public class EmpregadoCLT extends Empregado {
     }
     
     public final void setSalarioBase(float salarioBase) throws PessoaException {
-        if (salarioBase >= 0) {
+        if (salarioBase > 0) {
             this.salarioBase = salarioBase;
         } else {
             throw new PessoaException("Salario Base Invalido");

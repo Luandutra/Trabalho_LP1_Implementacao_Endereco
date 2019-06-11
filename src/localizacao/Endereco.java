@@ -12,6 +12,10 @@ public class Endereco {
     
     
     public void Enderco(){
+        logradouro = "";
+        bairro = "";
+        cidade = "";
+        cep = "";
         
     }
 
@@ -31,9 +35,15 @@ public class Endereco {
         return numero;
     }
 
-    public void setNumero(int numero) {
-        this.numero = numero;
+    public void setNumero(int numero) throws EnderecoException{
+        if(numero >0 ){
+            this.numero = numero;
+        }else {
+         throw new  EnderecoException("Numero incorreto");
+        }
     }
+        
+    
 
     public String getBairro() {
         return bairro;
@@ -77,7 +87,7 @@ public class Endereco {
     }
 
     public void setUf(String uf)throws EnderecoException {
-        if(uf.length()> 2){    
+        if(uf.length()>= 2){    
         this.uf = uf;
     }else {
             throw new EnderecoException("UF invalida");
@@ -85,7 +95,7 @@ public class Endereco {
     }
     
     public String getEnderecoCompleto( ){
-        return "Logradouro: " +getLogradouro() +"\n Numero :" +getNumero()+ "\n Bairro: " +getBairro()+"\n Cidade: " +getCidade()+"UF: "+getUf()+"CEP: "+getCep();
+        return "UF: "+getUf()+"\nCEP: "+getCep()+"\nCidade: " +getCidade()+"\nBairro: " +getBairro() + "\nLogradouro / Rua : " +getLogradouro()+"\nNumero :" +getNumero();
     } 
    
 }

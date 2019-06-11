@@ -1,15 +1,17 @@
 
 package conceito;
 
+import localizacao.EmpregadoException;
+
 public class EmpregadoHorista extends Empregado {
     private float valorHora;
-    private float numeroHora;
+    private int numeroHora;
     
     public EmpregadoHorista(){
         super();
     }
     
-    public EmpregadoHorista(float valorHora, float numeroHora, String cargo, String nomeEmpresa, String nome, String nomeMae, String nomePai) throws PessoaException{
+    public EmpregadoHorista(float valorHora, int numeroHora, String cargo, String nomeEmpresa, String nome, String nomeMae, String nomePai) throws PessoaException, EmpregadoException{
         super(cargo, nomeEmpresa, nome, nomeMae, nomePai);
         this.setNumeroHora(numeroHora);
         this.setValorHora(valorHora);
@@ -32,7 +34,7 @@ public class EmpregadoHorista extends Empregado {
        
     }
     
-    public final void setNumeroHora(float numeroHora) throws PessoaException{
+    public final void setNumeroHora(int numeroHora) throws PessoaException{
         if(numeroHora >= 0 ){
             this.numeroHora = numeroHora;
         }else {
@@ -42,6 +44,7 @@ public class EmpregadoHorista extends Empregado {
 
     @Override
     public float calcularSalario() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        float salarioFinal;
+        return this.numeroHora * this.valorHora;    
     }
 }

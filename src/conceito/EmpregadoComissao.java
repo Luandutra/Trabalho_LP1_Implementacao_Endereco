@@ -1,6 +1,8 @@
 
 package conceito;
 
+import localizacao.EmpregadoException;
+
 
 public class EmpregadoComissao extends Empregado {
     private float totalVenda;
@@ -9,7 +11,7 @@ public class EmpregadoComissao extends Empregado {
     public EmpregadoComissao(){
     }
     
-    public EmpregadoComissao(float totalvenda, float pComissao, String cargo, String nomeEmpresa, String nome, String nomeMae, String nomePai) throws PessoaException{
+    public EmpregadoComissao(float totalVenda, float pComissao, String cargo, String nomeEmpresa, String nome, String nomeMae, String nomePai) throws PessoaException, EmpregadoException{
         super(cargo, nomeEmpresa, nome, nomeMae, nomePai);
         
         this.setTotalVenda(totalVenda);
@@ -21,7 +23,7 @@ public class EmpregadoComissao extends Empregado {
     }
     
     public final void setTotalVenda(float totalVenda) throws PessoaException{
-        if (totalVenda > 0 ){
+        if (totalVenda >= 0 ){
             this.totalVenda = totalVenda;
         }else {
             throw new PessoaException ("total de vendas invalido");

@@ -2,12 +2,13 @@
 package execucao;
 
 import visao.VisaoEmpregadoAplicacao;
+import visao.VisaoEnderecoEmpresa;
 
 
-public class TesteEmpregadoCLT {
+public class TesteEnderecoEmpresa {
     
     public static void main (String args[]){
-        VisaoEmpregadoAplicacao emp1 = new VisaoEmpregadoAplicacao();
+        VisaoEnderecoEmpresa emp1 = new  VisaoEnderecoEmpresa();
         emp1.lerDados();
         emp1.mostraDados();
         

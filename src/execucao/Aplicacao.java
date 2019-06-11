@@ -4,19 +4,20 @@ package execucao;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import visao.IVisaoEmpregado;
-import visao.VisaoEmpregadoCLT;
+import visao.VisaoEmpregadoAplicacao;
 import visao.VisaoEmpregadoComissao;
 import visao.VisaoEmpregadoHorista;
 
 
-public class TesteEmpregados {
+public class Aplicacao {
     private static final String stringMenu = "Forneça uma das opcoes: \n\n"+
-                                             "[1] Incluir EmpregadoCLT\n"+
-                                             "[2] Incluir EmpregadoComissao\n"+
-                                             "[3] Incluir EmpregadoHorista\n"+
+                                             "[1] Incluir Empregado\n"+
+                                             "[2] Incluir EmpregadoComissao \n" +
+                                             "[3] Incluir EmpregadoHorista \n" +
                                              "[4] Mostrar Dados\n"+
-                                             "[5] Totalizar Salarios\n"+
+                                             "[5] Totalizar Salarios\n"+                                           
                                              "[6] Sair";
+                                              
     
     public static void main (String args[]){
         int resp =0;
@@ -28,29 +29,33 @@ public class TesteEmpregados {
         do {
             resp = exibirMenu();
             if (resp == 1){
-                visaoEmpregadoTemp = new VisaoEmpregadoCLT();
+                visaoEmpregadoTemp = new VisaoEmpregadoAplicacao();
                 visaoEmpregadoTemp.lerDados();
                 listaEmpregado.add(visaoEmpregadoTemp);
             }else if(resp==2){
-                visaoEmpregadoTemp = new VisaoEmpregadoComissao();
-                visaoEmpregadoTemp.lerDados();
-                listaEmpregado.add(visaoEmpregadoTemp);
+               visaoEmpregadoTemp = new VisaoEmpregadoComissao();
+               visaoEmpregadoTemp.lerDados();
+               listaEmpregado.add(visaoEmpregadoTemp);
             }else if(resp==3){
-                visaoEmpregadoTemp = new VisaoEmpregadoHorista();
-                visaoEmpregadoTemp.lerDados();
-                listaEmpregado.add(visaoEmpregadoTemp);
+               visaoEmpregadoTemp = new VisaoEmpregadoHorista();
+               visaoEmpregadoTemp.lerDados();
+               listaEmpregado.add(visaoEmpregadoTemp);
+            
             }else if(resp==4){
                 for(IVisaoEmpregado visao : listaEmpregado){
                     visao.mostraDados();
                 }
-            }else if (resp==5){
+            }else if(resp==5){
                 totalSalario=0;
                 for(IVisaoEmpregado visao : listaEmpregado){
                     totalSalario += visao.getEmpregado().calcularSalario();
                 }
                 JOptionPane.showMessageDialog(null, "Total dos Salario =" +totalSalario);
-            }
-            
+            }else if(resp==6){
+                for(IVisaoEmpregado visao : listaEmpregado){
+                    visao.mostraDados();
+                }
+            }            
         }while (resp != 6);
         System.exit(0);
     }
@@ -66,7 +71,7 @@ public class TesteEmpregados {
                 JOptionPane.showMessageDialog(null, "Digitacao incosistente");
                 resp= 0;
             }
-        }while (resp <1|| resp >6);
+        }while (resp <1|| resp >7);
         return resp;
     }
 }
